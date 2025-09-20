@@ -1,0 +1,163 @@
+/* faq.module.css */
+
+.faqContainer {
+  min-height: 100vh;
+  background: transparent; 
+  margin-top:  2rem ;/* 80% black glass effect */
+  backdrop-filter: blur(10px);    /* blur behind */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  color: #fff;
+  padding: 2rem;
+  font-family: "Inter", sans-serif;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); /* stronger depth */
+}
+
+/* ===== Header ===== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+.navbar li:hover {
+  color: #fff;
+}
+
+.headerRight {
+  display: flex;
+  gap: 1rem;
+}
+
+.signInBtn {
+  background: transparent;
+  border: 1px solid #444;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.signInBtn:hover {
+  background: #222;
+}
+
+.bookBtn {
+  background: #fff;
+  border: none;
+  color: #000;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.bookBtn:hover {
+  background: #ddd;
+}
+
+/* ===== Title Section ===== */
+.titleSection {
+  max-width: 700px;
+  margin: 0 auto 4rem;
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  border: 1px solid #444;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  font-size: 2rem;
+  color: #aaa;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin: 1rem 0;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #888;
+  line-height: 1.6;
+}
+
+/* ===== FAQ List ===== */
+.faqList {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.faqItem {
+  border-bottom: 1px solid #222;
+  padding: 1.5rem 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.faqItem:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.faqQuestion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.faqNumber {
+  margin-right: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.faqQuestion h3 {
+  flex: 1;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.icon {
+  font-size: 1.5rem;
+  color: #888;
+}
+
+.faqAnswer {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #aaa;
+  line-height: 1.6;
+}
+
+.active .icon {
+  color: #fff;
+}
+
+/* ===== Footer ===== */
+.footer {
+  margin-top: 5rem;
+  text-align: center;
+  color: #555;
+  font-size: 0.85rem;
+}

@@ -1,0 +1,217 @@
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container */
+.trade-section {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  background: transparent;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.trade-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  z-index: 0;
+}
+
+/* Grid */
+.trade-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  max-width: 1100px;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Cards */
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(14, 165, 233, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 0 4px rgba(236, 72, 153, 0.6),   /* pink */
+    0 0 8px rgba(139, 92, 246, 0.5),   /* purple */
+    0 0 12px rgba(59, 130, 246, 0.4);  /* blue */
+  border-color: transparent;
+}
+
+
+/* Large card (All Projects) */
+.card-large {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+/* Text side of large card */
+.card-text {
+  margin: 10rem,0;
+  margin-top: 6vh;
+  flex: 1;
+  display: flex;
+  height: 55vh;
+  flex-direction: column;
+  justify-content: space-between; /* Heading top, actions bottom */
+  align-items: flex-start;
+  text-align: left;
+  padding: 0.5rem 0;
+}
+
+.card-large h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.card-large p {
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+  color: #aaa;
+  line-height: 1.5;
+}
+
+/* Button + Learn More inline */
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;           /* Button aur link ke beech ka gap */
+  margin-top: auto;     /* Bottom align */
+}
+
+/* CTA Button */
+.ctaBtn {
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background: rgba(56, 189, 248, 0.15);
+  border: 2px solid #38bdf8;
+  border-radius: 50px;
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+}
+
+.ctaBtn:hover {
+  background: rgba(56, 189, 248, 0.25);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.8),
+              0 0 40px rgba(14, 165, 233, 0.6);
+  transform: translateY(-3px) scale(1.05);
+}
+
+/* Learn More link */
+.learnMore {
+  color: #38bdf8;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.learnMore:hover {
+  color: #22c55e;
+  text-decoration: underline;
+}
+
+/* Image side of large card */
+.card-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  
+}
+
+.card-image img {
+  width: 100%;
+  max-width: 320px;
+  height: 60vh;
+  border-radius: 1rem;
+  object-fit: cover;
+  display: block;
+}
+
+/* Small cards */
+.card-small h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.card-small p {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 0.8rem;
+}
+
+.card-small img {
+  width: 100%;
+  height: 60%;
+  border-radius: 0.8rem;
+  margin: 0.8rem 0;
+  object-fit: cover;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-large {
+    grid-column: span 1;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-image img {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .card-small img {
+    max-width: 100%;
+  }
+
+  .card-actions {
+    justify-content: center; /* Mobile me dono center me */
+  }
+}

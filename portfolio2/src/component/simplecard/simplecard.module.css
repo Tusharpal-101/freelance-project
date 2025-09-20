@@ -1,0 +1,196 @@
+/* 🔲 Hero Section */
+.hero {
+  width: 100%;
+  min-height: 100vh;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+}
+
+/* 🔳 Content Box */
+.contentBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #111;
+  padding: 3rem;
+  border-radius: 1.5rem;
+  position: relative;
+  max-width: 1100px;
+  width: 100%;
+  overflow: visible;
+}
+
+/* 📝 Text Section */
+.text {
+  max-width: 50%;
+  color: white;
+}
+
+.text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.text p {
+  color: #aaa;
+  margin-bottom: 2rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+/* 🎨 Common Button Base */
+button {
+  padding: 14px 36px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  transition: all 0.3s ease-in-out;
+  backdrop-filter: blur(6px);
+}
+
+/* 🟢 Primary Button */
+.primaryBtn {
+  color: #fff;
+  background: rgba(0, 255, 132, 0.15);
+  border: 2px solid #00ff84;
+  text-shadow: 0 0 8px rgba(0, 255, 132, 0.8);
+  box-shadow: 0 0 12px rgba(0, 255, 132, 0.4);
+}
+
+.primaryBtn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(0, 255, 132, 0.4),
+    transparent
+  );
+  transition: all 0.5s;
+}
+
+.primaryBtn:hover::before {
+  left: 100%;
+}
+
+.primaryBtn:hover {
+  background: rgba(0, 255, 132, 0.25);
+  box-shadow: 0 0 20px rgba(0, 255, 132, 0.8),
+              0 0 40px rgba(0, 255, 132, 0.6);
+  transform: translateY(-3px) scale(1.05);
+}
+
+/* 🔵 Secondary Button */
+.secondaryBtn {
+  color: #fff;
+  background: rgba(56, 189, 248, 0.15);
+  border: 2px solid #38bdf8;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+}
+
+.secondaryBtn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(56, 189, 248, 0.4),
+    transparent
+  );
+  transition: all 0.5s;
+}
+
+.secondaryBtn:hover::before {
+  left: 100%;
+}
+
+.secondaryBtn:hover {
+  background: rgba(56, 189, 248, 0.25);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.8),
+              0 0 40px rgba(14, 165, 233, 0.6);
+  transform: translateY(-3px) scale(1.05);
+}
+
+/* 🖼️ Image Box - Static (No Hover/Shadow) */
+.imageBox {
+  position: absolute;
+  top: -80px;        /* card ke upar lift */
+  right: 2rem;       /* card ke right se gap */
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  z-index: 10;
+  border-radius: 1.5rem;
+  box-shadow: none; /* shadow removed */
+  transition: none;  /* hover transition removed */
+}
+
+.imageBox img {
+  width: auto;     /* size same */
+  max-width: 100%;
+  height: auto;
+  max-height: 70vh;
+  border-radius: 1.5rem;
+  transition: none;
+}
+
+.imageBox:hover {
+  transform: none;
+}
+
+.imageBox::after {
+  content: none;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .contentBox {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .text {
+    max-width: 100%;
+  }
+
+  .imageBox {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-top: 2rem;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .imageBox img {
+    max-height: 40vh;
+    width: auto;
+  }
+
+  .imageBox::after {
+    content: none;
+  }
+}
