@@ -1,0 +1,255 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@300;400&display=swap");
+
+/* Global box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Page Container */
+.page {
+  margin-top:  2rem;
+  font-family: "Karla", sans-serif;
+  min-height: 100vh;
+   background-color: transparent;
+  overflow: hidden;
+  display: flex;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: none;
+  position: relative;
+}
+
+/* Cursor */
+.cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 5rem;
+  pointer-events: none;
+  display: grid;
+  grid-template-areas: "layer";
+  place-items: center;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  mix-blend-mode: difference;
+}
+
+.cursor > * {
+  grid-area: layer;
+  will-change: transform;
+}
+
+.cursorOuter {
+  width: 1em;
+  height: 1em;
+  border: 2px solid #38bdf8;
+  border-radius: 50%;
+  transform: translate(calc(var(--lag-x) * 1px), calc(var(--lag-y) * 1px));
+}
+
+.cursorInner {
+  width: 0.8em;
+  height: 0.8em;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(56, 189, 248, 0.5);
+  border-radius: 50%;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px))
+    scale(var(--lag-scale));
+}
+
+/* App Container */
+
+.app {
+  background: rgba(128, 128, 128, 0.15); /* light grey transparent */
+  backdrop-filter: blur(20px); /* blur effect */
+  -webkit-backdrop-filter: blur(20px); /* Safari support */
+  border-radius: 1rem;
+  width: 90vw;
+  min-height: 80vh;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+  margin-top: 3rem;
+}
+
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.header li {
+  cursor: pointer;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Main */
+h1 {
+  font-size: 3rem;
+  margin: 1rem 0;
+}
+
+.aboutText {
+  margin: 2rem auto;
+  max-width: 600px;
+  text-align: center;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  color: #e0e0e0;
+  padding: 0 1rem;
+}
+
+.aboutText span {
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+/* Buttons */
+button {
+  margin: 0 10px;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 50px;
+  border: 2px solid #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  background: rgba(56, 189, 248, 0.25);
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.8);
+}
+
+/* Continuous Scroll */
+.scrollWrapper {
+  position: relative;
+  overflow: hidden;
+  width: 70%;
+  margin: 2rem auto;
+  white-space: nowrap;
+  border-left: 2px solid rgba(255, 255, 255, 0.15);
+  border-right: 2px solid rgba(255, 255, 255, 0.15);
+  padding: 0.5rem 0;
+}
+
+.scrollTrack {
+  display: flex;
+  width: max-content;
+  animation: scroll 45s linear infinite;
+}
+
+.scrollText {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0 2rem;
+  white-space: nowrap;
+}
+
+/* Scroll animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Gradient + Shine Text */
+.stroke {
+  background: linear-gradient(to right, #ec4899, #8b5cf6, #3b82f6);
+  background-size: 200% auto;  /* 🔥 Important for shine */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 60px;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: shine 3s linear infinite;
+}
+
+/* Neon Glow */
+.stroke::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  color: transparent;
+  text-shadow: 0 0 10px #ec4899,
+               0 0 20px #8b5cf6,
+               0 0 30px #3b82f6,
+               0 0 40px #3b82f6;
+}
+
+/* Gradient shine animation */
+@keyframes shine {
+  0% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .aboutText {
+    font-size: 0.9rem;
+    padding: 0 0.5rem;
+    width: 19rem;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .scrollText {
+    font-size: 1.4rem;
+  }
+
+  .app {
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+  }
+
+  .stroke {
+    font-size: 1.8rem;
+  }
+}

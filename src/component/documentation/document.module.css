@@ -1,0 +1,135 @@
+.container {
+  background-color: #000;
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+/* Main Layout */
+.main {
+  display: flex;
+  height: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background-color: #1e1e1e;
+  padding: 1.5rem 1rem;
+  border-right: 1px solid #333;
+  overflow-y: auto;
+}
+
+.sidebarTitle {
+  color: #8b1aff;
+  margin: 1.5rem 0 0.5rem 0;
+  font-size: 1rem;
+}
+
+.sidebarList {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebarList li {
+  margin: 0.5rem 0;
+}
+
+.sidebarLink {
+  color: #ccc;
+  text-decoration: none;
+  display: block;
+  padding: 0.3rem 0;
+  border-left: 3px solid transparent;
+  transition: all 0.2s;
+}
+
+.sidebarLink:hover,
+.active {
+  color: white;
+  border-left: 3px solid #8b1aff;
+}
+
+/* Content */
+.content {
+  flex: 1;
+  padding: 2rem;
+  background-color: #121212;
+  overflow-y: auto;
+}
+
+.content h1,
+.content h2 {
+  color: #8b1aff;
+}
+
+.content code {
+  background-color: #2d2d2d;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+}
+
+.codeBlock {
+  background-color: #1e1e1e;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1rem 0;
+  border: 1px solid #333;
+}
+
+.codeBlock code {
+  color: #d4d4d4;
+  font-family: 'Courier New', monospace;
+  display: block;
+}
+
+/* Right Sidebar */
+.rightSidebar {
+  width: 250px;
+  background-color: #1e1e1e;
+  padding: 1.5rem 1rem;
+  border-left: 1px solid #333;
+  overflow-y: auto;
+}
+
+.rightList {
+  list-style: none;
+  padding: 0;
+}
+
+.rightList li {
+  margin: 0.4rem 0;
+}
+
+.rightList a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.rightList a:hover {
+  color: white;
+}
+
+.widget {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+}
+
+.iconGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.iconGrid span {
+  text-align: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+}

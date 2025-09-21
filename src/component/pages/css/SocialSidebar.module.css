@@ -1,0 +1,70 @@
+.sidebar {
+  position: fixed;
+  top: 40%;
+  left: 0;
+  z-index: 1000;
+
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin: 10px 0;
+  
+  transition: all 0.3s ease-in-out;
+}
+
+/* Link Base */
+.sidebar a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  background: #111;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 0 50px 50px 0;
+  width: 50px; /* collapsed */
+  overflow: hidden;
+  transition: width 0.3s ease-in-out, border 0.3s ease-in-out;
+  border: 2px solid transparent;
+}
+
+/* Gradient border */
+.sidebar a:hover {
+  border-image: linear-gradient(135deg, #8b5cf6, #ec4899) 1;
+  border-radius: 0 50px 50px 0;;
+}
+
+/* Icon Styling */
+.sidebar a svg {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+/* Text Styling */
+.sidebar a span {
+  margin-left: 10px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Hover Expand */
+.sidebar li:hover a {
+  width: 180px;
+  border-radius: 3px;
+}
+
+.sidebar li:hover a span {
+  opacity: 1;
+}
+
+/* Main toggle icon special style */
+.mainIcon {
+  background: linear-gradient(135deg, #00ff84, #38bdf8);
+  box-shadow: 0 0 10px #00ff84, 0 0 20px #38bdf8;
+}
