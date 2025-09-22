@@ -1,11 +1,25 @@
 .container {
   background-color: #000;
   color: white;
+  margin-top: 60px;
+
   width: 100vw;
   height: 100vh;
   font-family: 'Segoe UI', sans-serif;
   overflow: hidden;
 }
+/* Make sidebar position relative for resizer */
+.sidebar {
+  background-color: #1e1e1e;
+  padding: 1.5rem 1rem;
+  border-right: 1px solid #333;
+  overflow-y: auto;
+  position: relative; /* required for resizer */
+}
+
+/* Resizer div (in JSX inline style) */
+/* cursor: col-resize, width: 5px, right: 0, top: 0, height: 100% */
+
 
 /* Main Layout */
 .main {
@@ -126,6 +140,69 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
   margin-bottom: 1rem;
+}
+/* Dropdown wrapper */
+.dropdownWrapper {
+  margin-bottom: 1rem;
+  position: relative;
+}
+.buttongoback {
+  border: 2px solid skyblue;  /* Sky blue border */
+  padding: 0.3rem 0.8rem;     /* Chhota button */
+  margin-bottom: 1rem;        /* Niche se gap */
+  border-radius: 5px;          /* Rounded corners */
+  background-color: rgba(255, 255, 255, 0.1); /* Transparent blur */
+  color: white;
+  cursor: pointer;
+  backdrop-filter: blur(5px);  /* Blur effect */
+  display: inline-block;
+}
+
+
+.dropdownButton {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: #1e1e1e;
+  color: #ccc;
+  border: 1px solid #8b1aff;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.dropdownButton:hover {
+  color: white;
+}
+
+.dropdownList {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background-color: #121212;
+  border: 1px solid #333;
+  border-radius: 4px;
+  list-style: none;
+  padding: 0.3rem 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.dropdownList li {
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+}
+
+.dropdownList li:hover {
+  background-color: rgba(139, 26, 255, 0.2);
+}
+
+.dropdownList li.active {
+  color: white;
+  font-weight: bold;
 }
 
 .iconGrid span {
