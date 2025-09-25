@@ -7,24 +7,25 @@ import { Link } from "react-router-dom";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false); // Loader state
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email) return toast.error("Email is required", { position: "top-right" });
 
+    setLoading(true); // Start loader
     try {
-      // Backend call
       const res = await API.post("/forgot-password", { email });
 
-      // Success toast
       toast.success(res.data.message, { position: "top-right", autoClose: 3000 });
       setEmail(""); // Clear input
     } catch (err) {
-      // Error toast
       toast.error(
         err.response?.data?.message || "Error sending email",
         { position: "top-right", autoClose: 3000 }
       );
+    } finally {
+      setLoading(false); // Stop loader
     }
   };
 
@@ -48,7 +49,13 @@ export default function ForgotPassword() {
               />
             </div>
             <div className={styles.inputBx}>
-              <input type="submit" value="Send Reset Link" />
+              <button
+                type="submit"
+                className={styles.submitBtn}
+                disabled={loading} // Disable while loading
+              >
+                {loading ? <span className={styles.loader}></span> : "Send Reset Link"}
+              </button>
             </div>
           </form>
           <Link to="/login" className={styles.linkBtn}>Back to Login</Link>

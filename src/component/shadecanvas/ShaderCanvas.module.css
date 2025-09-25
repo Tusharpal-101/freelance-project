@@ -73,6 +73,7 @@ a {
 .postSliderHeader {
   color: var(--text-color);
   margin-top: 2rem;
+   height: 30rem;
   flex: 0 0 250px;
   margin-right: 1rem;
   display: flex;

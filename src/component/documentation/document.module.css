@@ -1,27 +1,13 @@
 .container {
   background-color: #000;
+  margin-top: 50px;
   color: white;
-  margin-top: 60px;
-
   width: 100vw;
   height: 100vh;
   font-family: 'Segoe UI', sans-serif;
   overflow: hidden;
 }
-/* Make sidebar position relative for resizer */
-.sidebar {
-  background-color: #1e1e1e;
-  padding: 1.5rem 1rem;
-  border-right: 1px solid #333;
-  overflow-y: auto;
-  position: relative; /* required for resizer */
-}
 
-/* Resizer div (in JSX inline style) */
-/* cursor: col-resize, width: 5px, right: 0, top: 0, height: 100% */
-
-
-/* Main Layout */
 .main {
   display: flex;
   height: 100%;
@@ -29,184 +15,164 @@
 
 /* Sidebar */
 .sidebar {
-  width: 220px;
   background-color: #1e1e1e;
   padding: 1.5rem 1rem;
   border-right: 1px solid #333;
   overflow-y: auto;
+  width: 250px;          /* default fixed width */
+  min-width: 250px;      /* shrink na ho */
+  max-width: 500px;      /* resize drag limit */
+  box-sizing: border-box;
 }
 
-.sidebarTitle {
-  color: #8b1aff;
-  margin: 1.5rem 0 0.5rem 0;
-  font-size: 1rem;
-}
-
-.sidebarList {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebarList li {
-  margin: 0.5rem 0;
-}
-
-.sidebarLink {
-  color: #ccc;
-  text-decoration: none;
-  display: block;
-  padding: 0.3rem 0;
-  border-left: 3px solid transparent;
-  transition: all 0.2s;
-}
-
-.sidebarLink:hover,
-.active {
-  color: white;
-  border-left: 3px solid #8b1aff;
-}
-
-/* Content */
-.content {
-  flex: 1;
-  padding: 2rem;
-  background-color: #121212;
-  overflow-y: auto;
-}
-
-.content h1,
-.content h2 {
-  color: #8b1aff;
-}
-
-.content code {
-  background-color: #2d2d2d;
-  padding: 0.2rem 0.4rem;
-  border-radius: 3px;
-}
-
-.codeBlock {
-  background-color: #1e1e1e;
-  padding: 1rem;
-  border-radius: 6px;
-  overflow-x: auto;
-  margin: 1rem 0;
-  border: 1px solid #333;
-}
-
-.codeBlock code {
-  color: #d4d4d4;
-  font-family: 'Courier New', monospace;
-  display: block;
-}
-
-/* Right Sidebar */
-.rightSidebar {
-  width: 250px;
-  background-color: #1e1e1e;
-  padding: 1.5rem 1rem;
-  border-left: 1px solid #333;
-  overflow-y: auto;
-}
-
-.rightList {
-  list-style: none;
-  padding: 0;
-}
-
-.rightList li {
-  margin: 0.4rem 0;
-}
-
-.rightList a {
-  color: #ccc;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.rightList a:hover {
-  color: white;
-}
-
-.widget {
-  margin-top: 2rem;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 6px;
-}
-
-.iconGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-/* Dropdown wrapper */
-.dropdownWrapper {
-  margin-bottom: 1rem;
-  position: relative;
-}
 .buttongoback {
-  border: 2px solid skyblue;  /* Sky blue border */
-  padding: 0.3rem 0.8rem;     /* Chhota button */
-  margin-bottom: 1rem;        /* Niche se gap */
-  border-radius: 5px;          /* Rounded corners */
-  background-color: rgba(255, 255, 255, 0.1); /* Transparent blur */
+  margin-bottom: 1rem;
+  padding: 8px 12px;
+  background: #333;
+  border: none;
   color: white;
   cursor: pointer;
-  backdrop-filter: blur(5px);  /* Blur effect */
-  display: inline-block;
+  border-radius: 6px;
+  width: 100%;
 }
 
+/* Dropdown */
+.dropdownWrapper {
+  margin-bottom: 1rem;
+}
 
 .dropdownButton {
   width: 100%;
-  padding: 0.5rem 1rem;
-  background-color: #1e1e1e;
-  color: #ccc;
-  border: 1px solid #8b1aff;
-  border-radius: 4px;
-  cursor: pointer;
-  text-align: left;
-  font-size: 0.95rem;
-}
-
-.dropdownButton:hover {
+  padding: 10px;
+  background: #2c2c2c;
+  border: none;
   color: white;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 6px;
+  white-space: nowrap;      /* text wrap mat ho */
+  overflow: hidden;
+  text-overflow: ellipsis;  /* lamba ho to ... show kare */
 }
 
 .dropdownList {
-  position: absolute;
-  top: 110%;
-  left: 0;
-  width: 100%;
-  background-color: #121212;
-  border: 1px solid #333;
-  border-radius: 4px;
   list-style: none;
-  padding: 0.3rem 0;
-  margin: 0;
-  max-height: 200px;
-  overflow-y: auto;
-  z-index: 10;
+  padding: 0;
+  margin: 0.5rem 0;
 }
 
 .dropdownList li {
-  padding: 0.4rem 1rem;
+  padding: 8px;
   cursor: pointer;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .dropdownList li:hover {
-  background-color: rgba(139, 26, 255, 0.2);
+  background-color: #333;
 }
 
-.dropdownList li.active {
+.active {
+  background-color: #444;
+}
+
+/* Content area */
+.content {
+  flex-grow: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* 🔹 Code block */
+.codeBlock {
+  position: relative;
+  background: #1e1e1e;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+}
+
+.codeBlock pre {
+  margin: 0;
+  color: #f8f8f2;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: "Fira Code", monospace;
+}
+
+.codeActions {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 8px;
+}
+
+.codeActions button {
+  background: #333;
+  border: none;
   color: white;
-  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: background 0.2s;
 }
 
-.iconGrid span {
-  text-align: center;
-  cursor: pointer;
-  font-size: 1.2rem;
+.codeActions button:hover {
+  background: #555;
+}
+
+/* 🔹 Resizer handle */
+.sidebar-resizer {
+  width: 8px;
+  cursor: col-resize;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  z-index: 100;
+  background-color: transparent;
+  transition: background-color 0.2s;
+}
+
+.sidebar-resizer:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 🔹 Responsive for mobile */
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #333;
+    padding: 1rem;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+
+  .codeBlock pre {
+    font-size: 12px;
+  }
+
+  .codeActions button {
+    padding: 3px 6px;
+    font-size: 12px;
+  }
 }

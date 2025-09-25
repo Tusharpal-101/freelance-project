@@ -1,38 +1,32 @@
+// DocumentationLayout.jsx
 import React, { useState, useRef } from "react";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { FaChevronDown, FaChevronUp, FaCopy, FaDownload } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import styles from "./document.module.css";
+import contentData from "../documentation/ContentData";
 
-// Categories data
 const categories = {
   Cards: ["All Cards", "Info Card", "Product Card", "Profile Card", "Blog Card"],
   Components: ["Buttons", "Forms", "Navbar", "Modal", "Dropdown"],
-  fotter: ["Buttons", "Forms", "Navbar", "Modal", "Dropdown"],
 };
 
-// Content for each category
-const contentData = {
-  "All Cards": "This shows all cards available in the library.",
-  "Info Card": "Info Card example content...",
-  "Product Card": "Product Card example content...",
-  "Profile Card": "Profile Card example content...",
-  "Blog Card": "Blog Card example content...",
-  "Buttons": "Button component examples...",
-  "Forms": "Form component examples...",
-  "Navbar": "Navbar component examples...",
-  "Modal": "Modal component examples...",
-  "Dropdown": "Dropdown component examples...",
-};
-
-// Reusable dropdown component
-const CategoryDropdown = ({ title, categories, selectedCategory, setSelectedCategory }) => {
+// 🔹 Dropdown Component
+function CategoryDropdown(props) {
   const [open, setOpen] = useState(false);
-  const toggleDropdown = () => setOpen(!open);
+
+  function toggleDropdown() {
+    setOpen(!open);
+  }
+
+  function selectCategory(cat) {
+    props.setSelectedCategory(cat);
+    setOpen(false);
+  }
 
   return (
     <div className={styles.dropdownWrapper}>
       <button className={styles.dropdownButton} onClick={toggleDropdown}>
-        {title}{" "}
+        {props.title}
         <span style={{ float: "right" }}>
           {open ? <FaChevronUp /> : <FaChevronDown />}
         </span>
@@ -40,61 +34,88 @@ const CategoryDropdown = ({ title, categories, selectedCategory, setSelectedCate
 
       {open && (
         <ul className={styles.dropdownList}>
-          {categories.map((cat, index) => (
-            <li
-              key={index}
-              className={selectedCategory === cat ? styles.active : ""}
-              onClick={() => {
-                setSelectedCategory(cat);
-                setOpen(false);
-              }}
-            >
-              {cat}
-            </li>
-          ))}
+          {props.categories.map(function (cat, index) {
+            return (
+              <li
+                key={index}
+                className={props.selectedCategory === cat ? styles.active : ""}
+                onClick={function () {
+                  selectCategory(cat);
+                }}
+              >
+                {cat}
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>
   );
-};
+}
 
-const DocumentationLayout = () => {
+function DocumentationLayout() {
   const [selectedCategory, setSelectedCategory] = useState("All Cards");
-  const [sidebarWidth, setSidebarWidth] = useState(220);
+  const [sidebarWidth, setSidebarWidth] = useState(220); // default fixed width
   const isResizing = useRef(false);
   const navigate = useNavigate();
 
-  // Back button function
-  const goBack = () => {
-    navigate("/"); // previous page: navigate(-1)
-  };
+  // 🔹 Back button
+  function goBack() {
+    navigate("/");
+  }
 
-  // Sidebar resizing functions
-  const startResize = (e) => {
-    if (e.button !== 0) return;
+  // 🔹 Start resizing
+  function startResize(e) {
+    if (e.button !== 0) return; // sirf left mouse button
     isResizing.current = true;
     document.addEventListener("mousemove", handleResize);
     document.addEventListener("mouseup", stopResize);
-  };
+  }
 
-  const handleResize = (e) => {
+  // 🔹 Handle resizing
+  function handleResize(e) {
     if (!isResizing.current) return;
-    const newWidth = e.clientX;
-    if (newWidth >= 150 && newWidth <= 500) {
+
+    const sidebarLeft = document
+      .querySelector(`.${styles.sidebar}`)
+      .getBoundingClientRect().left;
+
+    const newWidth = e.clientX - sidebarLeft;
+
+    if (newWidth >= 180 && newWidth <= 500) {
       setSidebarWidth(newWidth);
     }
-  };
+  }
 
-  const stopResize = () => {
+  // 🔹 Stop resizing
+  function stopResize() {
     isResizing.current = false;
     document.removeEventListener("mousemove", handleResize);
     document.removeEventListener("mouseup", stopResize);
-  };
+  }
+
+  // 🔹 Copy code
+  function copyCode() {
+    navigator.clipboard.writeText(contentData[selectedCategory].code);
+    alert("✅ Code copied to clipboard!");
+  }
+
+  // 🔹 Download code
+  function downloadCode() {
+    const element = document.createElement("a");
+    const file = new Blob([contentData[selectedCategory].code], {
+      type: "text/plain",
+    });
+    element.href = URL.createObjectURL(file);
+    element.download = `${selectedCategory.replace(/\s+/g, "_")}.jsx`;
+    document.body.appendChild(element);
+    element.click();
+  }
 
   return (
     <div className={styles.container}>
       <div className={styles.main}>
-        {/* Sidebar */}
+        {/* 🔹 Sidebar */}
         <aside
           className={styles.sidebar}
           style={{ width: sidebarWidth, position: "relative" }}
@@ -104,21 +125,23 @@ const DocumentationLayout = () => {
             ← Back
           </button>
 
-          {/* Render all category dropdowns dynamically */}
-          {Object.keys(categories).map((title) => (
-            <CategoryDropdown
-              key={title}
-              title={title}
-              categories={categories[title]}
-              selectedCategory={selectedCategory}
-              setSelectedCategory={setSelectedCategory}
-            />
-          ))}
+          {/* 🔹 Render dropdowns */}
+          {Object.keys(categories).map(function (title) {
+            return (
+              <CategoryDropdown
+                key={title}
+                title={title}
+                categories={categories[title]}
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+              />
+            );
+          })}
 
           {/* Resizer handle */}
           <div
             style={{
-              width: "15px",
+              width: "8px",
               cursor: "col-resize",
               position: "absolute",
               top: 0,
@@ -131,16 +154,34 @@ const DocumentationLayout = () => {
           />
         </aside>
 
-        {/* Content */}
+        {/* 🔹 Content */}
         <main className={styles.content}>
           <h1>{selectedCategory}</h1>
-          <p>{contentData[selectedCategory]}</p>
-         
-          
+
+          <h2>Definition</h2>
+          <p>{contentData[selectedCategory].definition}</p>
+
+          <h2>Example Code</h2>
+          <div className={styles.codeBlock}>
+            <div className={styles.codeActions}>
+              <button onClick={copyCode}>
+                <FaCopy /> Copy
+              </button>
+              <button onClick={downloadCode}>
+                <FaDownload /> Download
+              </button>
+            </div>
+            <pre>
+              <code>{contentData[selectedCategory].code}</code>
+            </pre>
+          </div>
+
+          <h2>Explanation</h2>
+          <p>{contentData[selectedCategory].details}</p>
         </main>
       </div>
     </div>
   );
-};
+}
 
 export default DocumentationLayout;

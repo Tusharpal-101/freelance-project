@@ -17,7 +17,7 @@ import PrivacyPolicy from './component/privacypolicy/PrivacyPolicy.jsx';
 import ResetPassword from './component/resetpassword/ResetPassword.js';
 import ForgotPassword from './component/forgetpassword/ForgotPassword.js';
 import Document from './component/documentation/Document.js';
-
+import Fullabout from './component/about/Fullabout.jsx'
 function App() {
   const location = useLocation();
 
@@ -47,6 +47,7 @@ function App() {
         <Route path="/reset-password/:token" element={<ResetPassword />} />
         <Route path="/forget-password" element={<ForgotPassword />} />
         <Route path="/doc" element={<Document />} />
+         <Route path="/fullabout" element={<Fullabout />} />
       </Routes>
 
       {/* Footer har page par */}

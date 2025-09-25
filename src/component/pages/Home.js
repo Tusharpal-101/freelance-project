@@ -15,6 +15,7 @@ import ResetPassword from '../resetpassword/ResetPassword.js'
 import ForgotPassword from '../forgetpassword/ForgotPassword.js'
 // import PrivacyPolicy from '../privacypolicy/PrivacyPolicy.jsx'
 import Document from "../documentation/Document"
+import Fullabout from "../about/Fullabout.jsx"
 const Home = () => {
   return (
     <>
@@ -25,10 +26,9 @@ const Home = () => {
       <SocialSidebar/> 
       <Faq/>
       {/* <PrivacyPolicy/> */}
-      <Document/>
       <About/>
       <ShaderCanvas/> 
-     
+     {/* <Fullabout/> */}
       {/* <Login/>  */}
       {/* <Contact/>
        {/* matches import */}

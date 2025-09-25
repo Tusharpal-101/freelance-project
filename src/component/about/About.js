@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "../about/about.module.css";
-
+// import img from "../../Assets/backgrond image.jpeg"
+import { Link } from "react-router-dom";
 export default function About() {
   useEffect(() => {
     const elCursor = document.querySelector(`.${styles.cursor}`);
@@ -105,11 +106,12 @@ export default function About() {
           </p>
 
           <div className={styles.actions}>
-            <button data-shrink>Learn More</button>
-            <button data-expand>Get Started</button>
-          </div>
+            <Link to= "/fullabout" >   <button data-shrink>Learn More</button></Link>
+             <Link to="/contact">   <button data-expand>Get Started</button></Link> 
+             </div>
         </main>
       </div>
     </div>
+    
   );
 }

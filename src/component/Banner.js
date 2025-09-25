@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../component/css/banner.module.css";
 import { ReactTyped } from "react-typed";
+import { Link } from "react-router-dom";
 
 const RainBanner = () => {
   const strings = [
@@ -36,7 +37,7 @@ const RainBanner = () => {
         </p>
 
         <div className={styles.btnGroup}>
-          <button className={styles.ctaBtn}>Get Started</button>
+            <Link to="/contact">   <button className={styles.ctaBtn}>Get Started</button></Link>
           <button className={styles.secondaryBtn}>See Our Work</button>
         </div>
       </div>
